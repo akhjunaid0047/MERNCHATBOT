@@ -4,7 +4,6 @@ import {Request, Response} from 'express';
 import { config } from 'dotenv';
 config();
 const apiKey = process.env.OPENAI_API as string;
-console.log(apiKey);
 const client = new OpenAI({apiKey});
 
 export const getAiResponse = async (
