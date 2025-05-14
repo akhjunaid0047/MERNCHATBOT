@@ -31,7 +31,6 @@ export const signUpUser = async (
     res.clearCookie('auth_token', {
       httpOnly: true,
       signed: true,
-      path: '/',
     });
     const token = createToken(
       user._id.toString(),
@@ -41,7 +40,6 @@ export const signUpUser = async (
     const expires = new Date();
     expires.setDate(expires.getDate() + 7);
     res.cookie('auth_token', token, {
-      path: '/',
       expires,
       httpOnly: true,
       signed: true,
@@ -67,7 +65,6 @@ export const loginUser = async (
         res.clearCookie('auth_token', {
           httpOnly: true,
           signed: true,
-          path: '/',
         });
         const token = createToken(
           userExist._id.toString(),
@@ -77,7 +74,6 @@ export const loginUser = async (
         const expires = new Date();
         expires.setDate(expires.getDate() + 7);
         res.cookie('auth_token', token, {
-          path: '/',
           expires,
           httpOnly: true,
           signed: true,
@@ -111,7 +107,6 @@ export const userLogout = async (req: Request, res: Response): Promise<any> => {
     res.clearCookie('auth_token', {
       httpOnly: true,
       signed: true,
-      path: '/',
     });
     return res.status(200).json({message: 'OK'});
   } catch (err: any) {
