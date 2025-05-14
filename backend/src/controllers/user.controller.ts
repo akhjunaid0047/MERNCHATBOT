@@ -30,7 +30,6 @@ export const signUpUser = async (
     await user.save();
     res.clearCookie('auth_token', {
       httpOnly: true,
-      domain: 'localhost',
       signed: true,
       path: '/',
     });
@@ -43,7 +42,6 @@ export const signUpUser = async (
     expires.setDate(expires.getDate() + 7);
     res.cookie('auth_token', token, {
       path: '/',
-      domain: 'localhost',
       expires,
       httpOnly: true,
       signed: true,
@@ -68,7 +66,6 @@ export const loginUser = async (
       if (await compare(password, userExist.password)) {
         res.clearCookie('auth_token', {
           httpOnly: true,
-          domain: 'localhost',
           signed: true,
           path: '/',
         });
@@ -81,7 +78,6 @@ export const loginUser = async (
         expires.setDate(expires.getDate() + 7);
         res.cookie('auth_token', token, {
           path: '/',
-          domain: 'localhost',
           expires,
           httpOnly: true,
           signed: true,
@@ -114,7 +110,6 @@ export const userLogout = async (req: Request, res: Response): Promise<any> => {
     if (!userExist) return res.status(401).json('User not registered');
     res.clearCookie('auth_token', {
       httpOnly: true,
-      domain: 'localhost',
       signed: true,
       path: '/',
     });
